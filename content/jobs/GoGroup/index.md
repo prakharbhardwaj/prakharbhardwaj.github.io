@@ -1,8 +1,8 @@
 ---
 date: '2021-04-12'
-title: 'Senior Software Engineer'
-company: 'Go Group (Terazo Europe)'
-short: 'Go Group'
+title: 'Principal Software Engineer'
+company: 'GoGroup (Zennify Europe)'
+short: 'GoGroup'
 location: 'Noida, IN'
 range: 'April 2021 - Present'
 url: 'https://www.gogroup.co/'

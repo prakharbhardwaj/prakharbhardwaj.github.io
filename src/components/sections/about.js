@@ -141,8 +141,8 @@ const About = () => {
               <a href="https://www.evueme.ai/">a selection-bot startup</a>,{' '}
               <a href="http://bonoride.com/">a mobility startup</a>, &{' '}
               <a href="https://www.knowledgly.com/">an edu-tech startup</a> My main focus these days
-              is building accessible, inclusive products at Go Group led{' '}
-              <a href="https://terazo.com/">Terazo(Europe)</a>.
+              is building accessible, inclusive products at GoGroup led{' '}
+              <a href="https://zennify.com/">Zennify(Europe)</a>.
             </p>
 
             <p>Here are a few technologies I've been working with recently:</p>

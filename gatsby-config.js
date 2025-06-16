@@ -2,7 +2,7 @@ const config = require('./src/config');
 
 module.exports = {
   siteMetadata: {
-    title: 'Prakhar Prakash Bhardwaj - Senior Software Engineer at Go Group (Terazo Europe)',
+    title: 'Prakhar Prakash Bhardwaj - Principal Software Engineer at GoGroup (Zennify Europe)',
     description: `I'm a software engineer who is passionate about making open-source more accessible, creating technology to elevate people, and building community.`,
     siteUrl: 'https://www.prakharbhardwaj.com', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder

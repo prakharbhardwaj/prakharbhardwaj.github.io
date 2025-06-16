@@ -72,9 +72,9 @@ const Hero = () => {
   const two = <h2 className="big-heading">Prakhar Bhardwaj</h2>;
   const three = (
     <h3 className="medium-heading">
-      Senior Software Engineer at{' '}
+      Principal Software Engineer at{' '}
       <a href="https://gogroup.tech/" target="_blank" rel="noreferrer">
-        <b>Go Group</b>
+        <b>GoGroup</b>
       </a>
     </h3>
   );
