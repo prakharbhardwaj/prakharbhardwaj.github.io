@@ -20,3 +20,6 @@ public/
 !public/og@2x.png
 !public/icons/
 !public/images/
+
+# TypeScript definitions for Gatsby
+gatsby-types.d.ts 

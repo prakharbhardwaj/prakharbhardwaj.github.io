@@ -60,7 +60,7 @@ const Layout = ({ children, location }) => {
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     const allLinks = Array.from(document.querySelectorAll('a'));
     if (allLinks.length > 0) {
@@ -94,7 +94,7 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Head />
+      <Head pathname={location.pathname} pageType={isHome ? 'profile' : 'website'} />
 
       <div id="root">
         <ThemeProvider theme={theme}>

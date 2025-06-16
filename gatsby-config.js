@@ -3,10 +3,48 @@ const config = require('./src/config');
 module.exports = {
   siteMetadata: {
     title: 'Prakhar Prakash Bhardwaj - Principal Software Engineer at GoGroup (Zennify Europe)',
-    description: `I'm a software engineer who is passionate about making open-source more accessible, creating technology to elevate people, and building community.`,
+    description: `Principal Software Engineer at GoGroup (Zennify Europe) specializing in full-stack development, backend architecture, and team leadership. Expert in Node.js, MongoDB, React, and modern web technologies. Passionate about building scalable solutions and mentoring developers.`,
     siteUrl: 'https://www.prakharbhardwaj.com',
     image: '/og.png',
     twitterUsername: '@holaprakhar',
+    author: {
+      name: 'Prakhar Prakash Bhardwaj',
+      bio: 'Principal Software Engineer at GoGroup with expertise in full-stack development, system architecture, and technical leadership.',
+      location: 'Europe',
+      company: 'GoGroup (Zennify Europe)',
+      position: 'Principal Software Engineer',
+      skills: [
+        'Node.js',
+        'MongoDB',
+        'React',
+        'JavaScript',
+        'TypeScript',
+        'AWS',
+        'System Architecture',
+      ],
+      linkedin: 'https://www.linkedin.com/in/prakharbhardwajin/',
+      github: 'https://github.com/prakharbhardwaj',
+    },
+    keywords: [
+      'Prakhar Bhardwaj',
+      'Principal Software Engineer',
+      'Full Stack Developer',
+      'Backend Engineer',
+      'Node.js Developer',
+      'React Developer',
+      'MongoDB Expert',
+      'Technical Lead',
+      'Software Architecture',
+      'GoGroup',
+      'Zennify Europe',
+      'JavaScript',
+      'TypeScript',
+      'AWS',
+      'System Design',
+      'Team Leadership',
+      'Software Engineering',
+      'Web Development',
+    ],
   },
   graphqlTypegen: true,
   plugins: [
@@ -15,8 +53,39 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        excludes: ['/preview/*', '/private/*', '/dev-404-page/', '/404/', '/404.html'],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: 'https://www.prakharbhardwaj.com',
+        sitemap: 'https://www.prakharbhardwaj.com/sitemap-index.xml',
+        policy: [
+          {
+            userAgent: '*',
+            allow: '/',
+            disallow: ['/preview/', '/private/'],
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          'G-R8WVCLGYGM', // Your Google Analytics tracking ID
+        ],
+        pluginConfig: {
+          head: false,
+          respectDNT: true,
+          exclude: ['/preview/**', '/do-not-track/me/too/'],
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
