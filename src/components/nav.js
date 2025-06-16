@@ -7,6 +7,7 @@ import { navLinks } from '@config';
 import { loaderDelay } from '@utils';
 import { useScrollDirection } from '@hooks';
 import { Menu } from '@components';
+import logo from '../images/logo.png';
 
 const StyledHeader = styled.header`
   ${({ theme }) => theme.mixins.flexBetween};
@@ -163,7 +164,9 @@ const Nav = ({ isHome }) => {
   const [scrolledToTop, setScrolledToTop] = useState(true);
 
   const handleScroll = () => {
-    setScrolledToTop(window.pageYOffset < 50);
+    if (typeof window !== 'undefined') {
+      setScrolledToTop(window.pageYOffset < 50);
+    }
   };
 
   useEffect(() => {
@@ -171,11 +174,15 @@ const Nav = ({ isHome }) => {
       setIsMounted(true);
     }, 100);
 
-    window.addEventListener('scroll', handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
+    }
 
     return () => {
       clearTimeout(timeout);
-      window.removeEventListener('scroll', handleScroll);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', handleScroll);
+      }
     };
   }, []);
 
@@ -192,11 +199,11 @@ const Nav = ({ isHome }) => {
               <div className="logo" tabIndex="-1">
                 {isHome ? (
                   <a href="/" aria-label="home">
-                    <img src={'logo.png'} alt="Logo" />
+                    <img src={logo} alt="Logo" />
                   </a>
                 ) : (
                   <Link to="/" aria-label="home">
-                    <img src={'logo.png'} alt="Logo" />
+                    <img src={logo} alt="Logo" />
                   </Link>
                 )}
               </div>

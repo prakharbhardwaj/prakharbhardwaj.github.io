@@ -10,9 +10,13 @@ package-lock.json
 
 # gatsby files
 .cache/
-public/page-data
-public/index.html
-public/static
-public/render*
-public/*.pdf
-public/og*
+public/
+
+# Keep these static assets that should be version controlled
+!public/favicon-32x32.png
+!public/logo.png
+!public/resume.pdf
+!public/og.png
+!public/og@2x.png
+!public/icons/
+!public/images/

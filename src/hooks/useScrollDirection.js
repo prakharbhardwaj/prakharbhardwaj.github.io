@@ -7,6 +7,9 @@ const useScrollDirection = ({ initialDirection, thresholdPixels, off } = {}) => 
   const [scrollDir, setScrollDir] = useState(initialDirection);
 
   useEffect(() => {
+    // Skip on server-side rendering
+    if (typeof window === 'undefined') return;
+
     const threshold = thresholdPixels || 0;
     let lastScrollY = window.pageYOffset;
     let ticking = false;

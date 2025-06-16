@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
@@ -234,7 +234,7 @@ const Research = () => {
     query {
       research: allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/research/" } }
-        sort: { fields: [frontmatter___date], order: DESC }
+        sort: { frontmatter: { date: DESC } }
       ) {
         edges {
           node {
@@ -242,9 +242,7 @@ const Research = () => {
               title
               cover {
                 childImageSharp {
-                  fluid(maxWidth: 700, traceSVG: { color: "#64ffda" }) {
-                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                  }
+                  gatsbyImageData(width: 700, placeholder: BLURRED)
                 }
               }
               tech
@@ -269,18 +267,15 @@ const Research = () => {
 
   return (
     <section id="research">
-      <h2 className="numbered-heading" ref={revealTitle}>
-        My Research Publication
-      </h2>
-
       <StyledResearchGrid>
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
             const { external, title } = frontmatter;
+            const image = getImage(frontmatter.cover);
 
             return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+              <StyledProject key={i}>
                 <div className="project-content">
                   <div>
                     <h3 className="project-title">
@@ -292,6 +287,11 @@ const Research = () => {
                       dangerouslySetInnerHTML={{ __html: html }}
                     />
                   </div>
+                </div>
+                <div className="project-image">
+                  <a href={external ? external : '#'}>
+                    <GatsbyImage image={image} alt={title} className="img" />
+                  </a>
                 </div>
               </StyledProject>
             );

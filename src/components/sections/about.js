@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
@@ -105,9 +105,11 @@ const About = () => {
     query {
       avatar: file(sourceInstanceName: { eq: "images" }, relativePath: { eq: "me.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 500, traceSVG: { color: "#64ffda" }) {
-            ...GatsbyImageSharpFluid_withWebp_tracedSVG
-          }
+          gatsbyImageData(
+            width: 500
+            placeholder: TRACED_SVG
+            tracedSVGOptions: { color: "#64ffda" }
+          )
         }
       }
     }
@@ -120,6 +122,7 @@ const About = () => {
   }, []);
 
   const skills = ['Node.js', 'MongoDB', 'MySQL', 'Apache', 'Docker', 'Swift', 'PubSub', 'Git'];
+  const image = getImage(data.avatar);
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -155,7 +158,7 @@ const About = () => {
 
         <StyledPic>
           <div className="wrapper">
-            <Img fluid={data.avatar.childImageSharp.fluid} alt="Avatar" className="img" />
+            <GatsbyImage image={image} alt="Avatar" className="img" />
           </div>
         </StyledPic>
       </div>

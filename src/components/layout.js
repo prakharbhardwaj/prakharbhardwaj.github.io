@@ -47,10 +47,21 @@ const StyledContent = styled.div`
 
 const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
-  const [isLoading, setIsLoading] = useState(isHome);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    // Show loader on home page only after mounting
+    if (isHome && typeof window !== 'undefined') {
+      setIsLoading(true);
+    }
+  }, [isHome]);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
+    if (typeof window === 'undefined') return;
+
     const allLinks = Array.from(document.querySelectorAll('a'));
     if (allLinks.length > 0) {
       allLinks.forEach(link => {
@@ -63,11 +74,11 @@ const Layout = ({ children, location }) => {
   };
 
   useEffect(() => {
-    if (isLoading) {
+    if (!isMounted || isLoading) {
       return;
     }
 
-    if (location.hash) {
+    if (typeof window !== 'undefined' && location.hash) {
       const id = location.hash.substring(1); // location.hash without the '#'
       setTimeout(() => {
         const el = document.getElementById(id);
@@ -79,7 +90,7 @@ const Layout = ({ children, location }) => {
     }
 
     handleExternalLinks();
-  }, [isLoading]);
+  }, [isMounted, isLoading, location.hash]);
 
   return (
     <>
@@ -91,7 +102,7 @@ const Layout = ({ children, location }) => {
 
           <SkipToContentLink href="#content">Skip to Content</SkipToContentLink>
 
-          {isLoading && isHome ? (
+          {isMounted && isLoading && isHome ? (
             <Loader finishLoading={() => setIsLoading(false)} />
           ) : (
             <StyledContent>
