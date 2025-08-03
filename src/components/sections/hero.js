@@ -73,7 +73,7 @@ const Hero = () => {
   const three = (
     <h3 className="medium-heading">
       Principal Software Engineer at{' '}
-      <a href="https://gogroup.tech/" target="_blank" rel="noreferrer">
+      <a href="https://www.gogroup.co/" target="_blank" rel="noreferrer">
         <b>GoGroup</b>
       </a>
     </h3>

@@ -165,22 +165,20 @@ const Head = ({ title, description, image, article = false, pathname, pageType =
       <meta name="keywords" content={keywords.join(', ')} />
 
       {/* Page-specific meta tags */}
-      {currentPath === '/' && (
-        <>
-          <meta name="subject" content="Software Engineering Portfolio" />
-          <meta name="category" content="Portfolio" />
-          <meta name="coverage" content="Worldwide" />
-          <meta name="distribution" content="Global" />
-          <meta name="rating" content="General" />
-        </>
-      )}
+      {currentPath === '/' && [
+        <meta key="subject" name="subject" content="Software Engineering Portfolio" />,
+        <meta key="category" name="category" content="Portfolio" />,
+        <meta key="coverage" name="coverage" content="Worldwide" />,
+        <meta key="distribution" name="distribution" content="Global" />,
+        <meta key="rating" name="rating" content="General" />,
+      ]}
 
       {/* Performance and Technical SEO */}
       <meta httpEquiv="x-dns-prefetch-control" content="on" />
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
       {/* Mobile and PWA optimization */}
       <meta name="mobile-web-app-capable" content="yes" />
@@ -249,13 +247,25 @@ const Head = ({ title, description, image, article = false, pathname, pageType =
       <meta name="profile:job_title" content={author.position} />
 
       {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">{JSON.stringify(structuredData.person)}</script>
-      <script type="application/ld+json">{JSON.stringify(structuredData.website)}</script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.person) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.website) }}
+      />
       {structuredData.breadcrumb && (
-        <script type="application/ld+json">{JSON.stringify(structuredData.breadcrumb)}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.breadcrumb) }}
+        />
       )}
       {structuredData.profile && (
-        <script type="application/ld+json">{JSON.stringify(structuredData.profile)}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.profile) }}
+        />
       )}
     </Helmet>
   );

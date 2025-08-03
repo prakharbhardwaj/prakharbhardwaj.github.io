@@ -18,6 +18,10 @@ module.exports = {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/prakharbhardwajin/',
     },
+    {
+      name: 'Medium',
+      url: 'https://medium.com/@prakhar.bhardwaj',
+    },
   ],
 
   navLinks: [
@@ -32,6 +36,10 @@ module.exports = {
     {
       name: 'Work',
       url: '/#projects',
+    },
+    {
+      name: 'Blog',
+      url: '/#blog',
     },
     {
       name: 'Research',

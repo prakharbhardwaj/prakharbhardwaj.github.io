@@ -4,7 +4,17 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
-import { Icon } from '@components/icons';
+
+const StyledResearchSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-size: clamp(24px, 5vw, var(--fz-heading));
+    margin-bottom: 50px;
+  }
+`;
 
 const StyledResearchGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
@@ -87,6 +97,11 @@ const StyledProject = styled.li`
         grid-column: 1 / -1;
       }
     }
+  }
+
+  /* Style for projects without images */
+  .project-content:only-child {
+    grid-column: 1 / -1 !important;
   }
 
   .project-content {
@@ -266,20 +281,24 @@ const Research = () => {
   }, []);
 
   return (
-    <section id="research">
+    <StyledResearchSection id="research">
+      <h2 ref={revealTitle}>Journal Publications & Research</h2>
+
       <StyledResearchGrid>
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
             const { external, title } = frontmatter;
-            const image = getImage(frontmatter.cover);
+            const image = frontmatter.cover ? getImage(frontmatter.cover) : null;
 
             return (
               <StyledProject key={i}>
                 <div className="project-content">
                   <div>
                     <h3 className="project-title">
-                      <a href={external}>{title}</a>
+                      <a href={external} target="_blank" rel="noopener noreferrer">
+                        {title}
+                      </a>
                     </h3>
 
                     <div
@@ -288,16 +307,18 @@ const Research = () => {
                     />
                   </div>
                 </div>
-                <div className="project-image">
-                  <a href={external ? external : '#'}>
-                    <GatsbyImage image={image} alt={title} className="img" />
-                  </a>
-                </div>
+                {image && (
+                  <div className="project-image">
+                    <a href={external ? external : '#'} target="_blank" rel="noopener noreferrer">
+                      <GatsbyImage image={image} alt={title} className="img" />
+                    </a>
+                  </div>
+                )}
               </StyledProject>
             );
           })}
       </StyledResearchGrid>
-    </section>
+    </StyledResearchSection>
   );
 };
 
