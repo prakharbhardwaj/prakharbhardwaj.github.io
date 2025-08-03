@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Logo" src="https://www.prakharbhardwaj.com/icons/icon-144x144.png" width="100" />
+  <img alt="Logo" src="https://www.prakharbhardwaj.com/static/logo-a2fe3ba958394ce11d82600d50a9cf7a.png" width="100" />
 </div>
 <h1 align="center">
   www.prakharbhardwaj.com
